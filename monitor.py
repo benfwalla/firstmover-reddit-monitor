@@ -25,7 +25,7 @@ SUBREDDITS = [
 ]
 
 # Only process posts from the last N minutes (matches cron interval + buffer)
-MAX_AGE_MINUTES = 20
+MAX_AGE_MINUTES = 120
 
 # Keywords that suggest the post might be relevant (more specific to avoid false positives)
 KEYWORDS = [
