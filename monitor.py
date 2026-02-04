@@ -67,29 +67,34 @@ def llm_filter(posts: list) -> list:
         text = p.get('text', '')[:300]
         posts_text.append(f"[{i}] {title} | {text}")
     
-    prompt = f"""You are filtering Reddit posts for FirstMover, an app that sends instant push notifications for new StreetEasy apartment listings in NYC.
+    prompt = f"""You are filtering Reddit posts for FirstMover, an app that sends INSTANT push notifications when new apartments hit StreetEasy.
 
-We want posts where someone would genuinely benefit from FirstMover. Good matches:
-- People actively searching for NYC apartments
-- People frustrated with StreetEasy's slow notifications
-- People asking how to be first to see/respond to listings
-- People discussing the competitive NYC rental market
-- People asking for apartment hunting tips/tools
+BE VERY STRICT. Only select posts where the person would DIRECTLY benefit from getting listing alerts faster. 
 
-Bad matches (reject these):
-- General discussions about rent prices, landlords, or policies
-- People who already have an apartment
-- Roommate searches
-- Comments just mentioning "StreetEasy" in passing without seeking help
-- Off-topic uses of keywords (e.g., "competitive market" about something else)
+GOOD (select these):
+- "ISO apartment" or "Looking for apartment" posts with budget/neighborhood - ACTIVELY HUNTING
+- "How do I find apartments before they're gone?" - WANTS TO BE FASTER
+- "StreetEasy notifications suck" or "listings disappear so fast" - FRUSTRATED WITH SPEED
+- "Tips for apartment hunting?" where speed/timing is relevant
 
-For each post, reply with ONLY the index numbers of posts that are GOOD matches, comma-separated.
-If none are good, reply with: NONE
+BAD (reject these):
+- Already found/have an apartment
+- Asking about rent prices, neighborhoods, landlords, policies, leases
+- Giving advice to others (not searching themselves)  
+- Moving company questions
+- Roommate/sublet posts
+- Bedbug, maintenance, legal questions
+- General NYC discussion
+- Someone mentioning StreetEasy in passing
 
-Posts to evaluate:
+When in doubt, reject. We only want HIGH-QUALITY opportunities where FirstMover is genuinely relevant.
+
+Reply with ONLY index numbers of GOOD posts (comma-separated), or NONE if no good matches.
+
+Posts:
 {chr(10).join(posts_text)}
 
-Good matches (indices only):"""
+Indices:"""
 
     try:
         req_data = json.dumps({
