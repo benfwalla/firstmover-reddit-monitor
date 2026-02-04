@@ -22,8 +22,21 @@ Every 15 min (OpenClaw cron):
 |------|---------|
 | `monitor.py` | Main script - fetches Reddit, filters, outputs results |
 | `reply_style.md` | Tone guide for draft replies (human, helpful, not salesy) |
+| `skills/humanizer/SKILL.md` | Anti-AI-detection skill - USE THIS when writing replies |
 | `seen_posts.json` | State - tracks processed post IDs to avoid duplicates |
 | `relevant_posts.json` | Output - latest filtered results |
+
+## Writing Replies
+
+**ALWAYS read and apply `skills/humanizer/SKILL.md` when drafting Reddit replies.**
+
+Redditors can smell AI from a mile away. The humanizer skill documents all the patterns that make text sound AI-generated and how to avoid them. Key things:
+- No "Additionally", "crucial", "delve", "landscape", "testament", "vibrant"
+- No em dash overuse
+- No rule of three
+- Vary sentence length - short punchy ones mixed with longer ones
+- Have opinions, acknowledge uncertainty
+- Sound like a real person who lives in NYC
 
 ## Config (in monitor.py)
 
